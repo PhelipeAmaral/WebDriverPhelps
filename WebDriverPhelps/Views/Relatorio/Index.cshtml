@@ -1,0 +1,83 @@
+﻿@model IQueryable<ArModel>
+
+<div class="margin-top-10 text-center">
+    <br />
+    <h2>Relatório de AR</h2>
+    <br />
+
+    <form class="margin-top-10">
+        <div class="row">
+
+            <div class="col-md-4">
+                <label class="form-label"><b>Selecione a AR</b></label>
+                <select class="form-control" name="arId">
+                    @if (Model != null)
+                    {
+                        foreach (var ar in Model)
+                        {
+                            <option value="@ar.Id">@ar.Nome</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label"><b>Data Inicial</b></label>
+                <input name="dataini" type="date" class="form-control" required>
+                @Html.ValidationMessage("dataini", "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                <label class="form-label"><b>Data Fim</b></label>
+                <input name="datafim" type="date" class="form-control" required>
+                @Html.ValidationMessage("datafim", "", new { @class = "text-danger" })
+            </div>
+
+            <div class="margin-top-10 mb-3">
+                <button asp-controller="Relatorio" asp-action="ExtrairPlanilha" class="btn btn-primary bg-dark">Confirmar</button>
+            </div>
+        </div>
+    </form>
+
+
+
+
+    <div class="margin-top-30 text-center">
+        <h2>Relatório Completo</h2>
+        <br />
+
+        <form class="margin-top-10">
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="form-label"><b>Selecione a AC</b></label>
+
+                    <select class="form-control" name="arId">
+                        <option value="1">Qualitycert Matriz</option>
+                        <option value="2">AC Qualitycert</option>
+                        <option value="3">Direta</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label"><b>Data Inicial</b></label>
+                    <input name="dataini" type="date" class="form-control" required>
+                    @Html.ValidationMessage("dataini", "", new { @class = "text-danger" })
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label"><b>Data Fim</b></label>
+                    <input name="datafim" type="date" class="form-control" required>
+                    @Html.ValidationMessage("datafim", "", new { @class = "text-danger" })
+                </div>
+
+                <div class="margin-top-10 mb-3">
+                    <button asp-controller="Relatorio" asp-action="ExtrairPlanilhaPorAC" class="btn btn-primary bg-dark">Confirmar</button>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+
+
+
